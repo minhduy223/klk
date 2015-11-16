@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Invoice</title>
+
+    <link rel="stylesheet" type="text/css" href="prototype.css">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src =https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js></script>
+</head>
+<body>
+
+
+<!-- BEGIN HTML -->
+<div class="Header">
+    <span class="yellow">LU </span> Electric Inc.
+</div>
+
+
+<div id="multi-tasks-div">
+<div class="SearchBox">
+    <input type="text" placeholder="Search tasks in project" id="task-search" />
+</div>
+
+<section class="container">
+    <div class = 'ltable scroll'>
+    <table id="leftTable" class="TasktoInvoiceTable">
+            <thead>
+            <tr>
+                <th id="tableHeader" colspan="6">Tasks</th>
+            </tr>
+            <tr>
+                <th>Task #</th>
+                <th>Task Type</th>
+                <th>Task Name</th>
+                <th>Total Price</th>
+                <th>Total Not Invoiced</th>
+            </tr>
+            </thead>
+            
+            <tbody>
+            <tr>
+                <td>458930</td>
+                <td>Work Order</td>
+                <td>Survey of existing connecting conduits</td>
+                <td>3000</td>
+                <td>3500</td>
+            </tr>
+            <tr>
+                <td>458931</td>
+                <td>Work Order</td>
+                <td>Palm Tree Lights</td>
+                <td>4000</td>
+                <td>4300</td>
+            </tr>
+            <tr>
+                <td>458932</td>
+                <td>Approved Proposal</td>
+                <td>Job Walk</td>
+                <td>700</td>
+                <td>500</td>
+            </tr>
+            <tr>
+                <td>458933</td>
+                <td>Work Order</td>
+                <td>4000</td>
+                <td>800</td>
+                <td>900</td>
+            </tr>
+            <tr>
+                <td>458934</td>
+                <td>Draft</td>
+                <td>Light Poles</td>
+                <td>600</td>
+                <td>3500</td>
+            </tr>
+            <tr>
+                <td>458935</td>
+                <td>Final</td>
+                <td>Palm Tree Lights</td>
+                <td>5000</td>
+                <td>3500</td>
+            </tr>
+            </tbody>
+        </table>
+
+</div>
+    
+
+    <div id="Button">
+        <input type="button" id="btnRight" value="&gt;&gt;" />
+        <input type="button" id="btnLeft" value="&lt;&lt;" />
+    </div>
+
+        <div class = 'rtable scroll'>
+        <table id="rightTable" class="TasktoInvoiceTable">
+            <thead>
+            <tr>
+                <th id="tableHeader" colspan="6">Tasks to Invoice</th>
+            </tr>
+            <tr>
+                <th>Task #</th>
+                <th>Task Type</th>
+                <th>Task Name</th>
+                <th>Total Price</th>
+                <th>Total Not Invoiced</th>
+            </tr>
+            </thead>
+            
+            <tbody>
+            <tr>
+                <td>458930</td>
+                <td>Work Order</td>
+                <td>Survey of existing connecting conduits</td>
+                <td>3000</td>
+                <td>3500</td>
+            </tr>
+            <tr>
+                <td>458931</td>
+                <td>Work Order</td>
+                <td>Palm Tree Lights</td>
+                <td>4000</td>
+                <td>4300</td>
+            </tr>
+            <tr>
+                <td>458932</td>
+                <td>Approved Proposal</td>
+                <td>Job Walk</td>
+                <td>700</td>
+                <td>500</td>
+            </tr>
+            <tr>
+                <td>458933</td>
+                <td>Work Order</td>
+                <td>4000</td>
+                <td>800</td>
+                <td>900</td>
+            </tr>
+            <tr>
+                <td>458934</td>
+                <td>Draft</td>
+                <td>Light Poles</td>
+                <td>600</td>
+                <td>3500</td>
+            </tr>
+            <tr>
+                <td>458935</td>
+                <td>Final</td>
+                <td>Palm Tree Lights</td>
+                <td>5000</td>
+                <td>3500</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<div><input type="text" id="txtLeft" /></div>    
+<input class="AddInvoiceButon" type="button" id="btnAddInv" value="Create Invoice" />
+<div class="showRetention"><input type="checkbox" id="ret-checkbox"> Show Only Retention Invoices<br></div>
+</div>
+
+
+<br>
+
+<div id="invoice-div">
+    <h4>New Invoice Records Created:</h4>
+    <table id="invoice-table">
+        <tr>
+            <th>RID</th>
+            <th>Invoice #</th>
+            <th>Invoice Amount</th>
+            <th>Type of Invoice</th>
+            <th>Related Tasks</th>
+            <th>View Invoice</th>
+        </tr>
+    </table>
+    <input class="ViewInvoiceButton" type="button" id="btnViewInv" value="View New Invoices Report" />
+</div>
+
+
+
+<!-- END HTML -->
+
+<script type="text/javascript">
+    
+$(function(){
+// Making Table Row selectable   
+     $('table#leftTable tbody tr').click(function(){
+        $(this).addClass('selected').siblings().removeClass('selected');
+         
+    });
+    $('table#rightTable tbody tr').click(function(){
+        $(this).addClass('selected').siblings().removeClass('selected');
+         
+    });
+    $('#btnRight').click(function(){
+       var selectedIteml = $($('table#leftTable tr.selected')[0]).removeClass('selected');
+        var destinationl =$('table#rightTable tbody');
+        destinationl.append(selectedIteml); 
+    });
+    $('#btnLeft').click(function(){
+       var selectedItemr = $($('table#rightTable tr.selected')[0]).removeClass('selected');
+        var destinationr =$('table#leftTable tbody');
+        destinationr.append(selectedItemr); 
+    });
+    
+    
+
+    
+        });
+    
+
+    
+    
+</script> 
+
+
+</body>
+</html>
